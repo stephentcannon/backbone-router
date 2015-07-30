@@ -6,4 +6,22 @@
 <template name="items_insert">
   <h1>here is your items insert form code</h1>
   
+  
+  <p>
+  {{> inputField label="Enter a queu name" type="text" name="name" id="name" placeholder="Enter the queue name to run the job job..." value=name helpblock="Required. This will place the job in a jobqueue for processing.  Must be a valid job queue name." tooltip="This si the tool tip." class="input-lg"}}</p>
+
+  <p>{{> inputField label="Enter a number between 5 and 10" type="number" name="name" id="name" placeholder="enter a number" value=name helpblock="Required. " tooltip="Number 5 to 10" min="5" max="10" required="required"}}</p>
+
+</template>
+
+<template name="inputField">
+  <div class="form-group">
+    {{#if label}}
+      <label for="{{id}}">{{label}}</label>
+    {{/if}}
+    <input type="{{type}}" class="form-control {{class}}" name="{{name}}" id="{{id}}" placeholder="{{placeholder}}" value="{{value}}" data-toggle="tooltip" title="{{tooltip}}" min="{{min}}" max="{{max}}" required="{{required}}">
+    {{#if helpblock}}
+      <p class="help-block">{{helpblock}}</p>
+    {{/if}}
+  </div>
 </template>
