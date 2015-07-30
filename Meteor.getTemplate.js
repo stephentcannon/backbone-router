@@ -1,4 +1,4 @@
-Meteor.get_template = function() {
+Meteor.getTemplate = function() {
   // console.log('**** Meteor.get_template ****');
   // console.log('Meteor.request.controller: ' + Meteor.request.controller);
   Meteor.view = Meteor.request.controller;

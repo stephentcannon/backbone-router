@@ -1,6 +1,6 @@
 Package.describe({
   name: 'steeve:etherpos-router',
-  version: '0.0.1',
+  version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: 'a simple implied router based on backbone',
   // URL to the Git repository containing the source code for this package.
@@ -20,9 +20,11 @@ Package.onUse(function(api) {
     'navigate.js',
     'request.js',
     'router.js',
-    'Meteor.get_template.js',
+    'Meteor.getTemplate.js',
     'helpers.js'
     ], 'client');
+
+  // api.export('EtherPOSRouter');
 });
 
 

@@ -17,19 +17,19 @@ ClientRouter = Backbone.Router.extend({
     },
     getRouteAndQueryString: function(route, queryString){
       Meteor.request.setController(route);
-      Meteor.request.setQuery(queryString);
+      Meteor.request.setQueryString(queryString);
     },
     getRouteActionAndQueryString: function(route, action, queryString){
       Meteor.request.setController(route);
       Meteor.request.setAction(action);
-      Meteor.request.setQuery(queryString);
+      Meteor.request.setQueryString(queryString);
     },
     /* Generic routes */
     get_route: function( route, action, id, queryString ) {
         Meteor.request.setController(route);
         Meteor.request.setAction(action);
         Meteor.request.setId(id);
-        Meteor.request.setQuery(queryString);
+        Meteor.request.setQueryString(queryString);
 
     },
 
@@ -39,12 +39,12 @@ ClientRouter = Backbone.Router.extend({
           Session.set('route', Backbone.history.fragment);
           Session.set('routeAction', Meteor.request.action);
           Session.set('routeId', Meteor.request.id);
-          Session.set('routeQuery', Meteor.request.query);
+          Session.set('routeQueryString', Meteor.request.queryString);
       });
     }
 });
 
-Router = new ClientRouter;
+EtherPOSRouter = new ClientRouter;
 
 /* Starts the backbone history, and thus the Router */
 Backbone.history.start({pushState: true});

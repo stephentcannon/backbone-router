@@ -19,7 +19,7 @@ var Request = Base.extend({
     setId: function(id){
         this.id = id;
     },  
-    setQuery: function( query ) {
+    setQueryString: function( query ) {
         if (query) {
             var query_object = {};
             query.replace(
@@ -27,7 +27,12 @@ var Request = Base.extend({
                 function($0, $1, $2, $3) { query_object[$1] = $3; }
             );
         }
-        this.query = query_object;
+        
+        for(var propt in query_object){
+          this.pushParam(propt, query_object[propt]);
+        }
+        this.queryString = query_object;
+
     },
 
     pushParam: function(key, value ) {
