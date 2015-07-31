@@ -73,7 +73,7 @@ ClientRouter = Backbone.Router.extend({
     initialize: function() {
       console.log('*** Router initialize ***');
       this.bind("all", function() {
-          Session.set('routeController', Backbone.history.fragment);  
+          Session.set('routeController', Backbone.history.fragment); //NEVER CHNAGE THIS THIS IS WHAT KICKS ROUTING 
           Session.set('routeAction', Meteor.request.action);
           Session.set('routeId', Meteor.request.id);
           Session.set('routeQueryString', Meteor.request.queryString);
