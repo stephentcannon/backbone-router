@@ -1,5 +1,11 @@
-#etherpos-router
-a simple implied router
+#backbone-router
+a simple implied router based on backbone
+
+#why
+because i shouldn't have to define routes
+
+because if i want to intercept routes then i should be able to define global and route based before and after hooks that can call one or more functions to handle the route...but only if necessary
+
 
 #usage
 
@@ -15,7 +21,7 @@ the router will attempt to route all requests to a template by name
 
 if the template cannot be found it will route to the Meteor.request.notFound
 
-if you do not set the Meteor.request.notFound by call EtherPOSRouter.notFound(templatename) then it will route to the packages internal EtherPOSRouterDefault404.html not found
+if you do not set the Meteor.request.notFound by call BackboneRouter.notFound(templatename) then it will route to the packages internal BackboneRouterDefault404.html not found
 
 The route expression is limited to the following.
 
@@ -93,11 +99,18 @@ Put this in your body somewhere and render whatever template is in the /controll
     getReactiveParam: {{getReactiveParam "name1"}}<br/>
   </p>
 
+# Routing the client
+
+````
+Meteor.navigate('/dashboard')
+````
+
 #local testing linking
 
 * cd to your project
 * mkdir packages
 * ln -s /path/to/my:package packages/my:package
-  * ln -s ~/projects/meteor-packages/steeve:etherpos-router packages/steeve:etherpos-router
-* meteor add steeve:etherpos-router
+  * ln -s ~/projects/meteor-packages/steeve:backbone-router packages/steeve:backbone-router
+* meteor add steeve:backbone-router
+
 

@@ -4,6 +4,7 @@
  */
 Meteor.navigate = function(route) {
 
-  EtherPOSRouter.navigate(route, {trigger: true});
+  // BackboneRouter.navigate(route, {trigger: true});
+  BackboneRouter.navigate(route, true);
 
 };

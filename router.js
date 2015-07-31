@@ -50,11 +50,11 @@ ClientRouter = Backbone.Router.extend({
       });
     },
     notFound: function(name){
-      name ? Meteor.request.setNotFound(name) : Meteor.request.setNotFound('EtherPOSRouterDefault404');
+      name ? Meteor.request.setNotFound(name) : Meteor.request.setNotFound('BackboneRouterDefault404');
     }
 });
 
-EtherPOSRouter = new ClientRouter;
+BackboneRouter = new ClientRouter;
 
 /* Starts the backbone history, and thus the Router */
 Backbone.history.start({pushState: true});
