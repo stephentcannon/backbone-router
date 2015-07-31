@@ -5,9 +5,33 @@
 Template.registerHelper('content', function(){
     /* This does nothing but triggers the Meteor.Template.chunk HTML automatic update on route change */
     // console.log("******* Template.registerHelper('content'");
-    Session.get('routeController');
+    Session.get('route');
     return Template[Meteor.getTemplate()];
 });
+
+Template.registerHelper('isActiveRoute', function(options){
+  var cssClass = options.hash.class ? options.hash.class : 'active'
+  return Meteor.request.route === options.hash.name ? cssClass : ''
+});
+
+Template.registerHelper('isActiveAction', function(options){
+  var cssClass = options.hash.class ? options.hash.class : 'active'
+  return Meteor.request.action === options.hash.name ? cssClass : ''
+});
+
+Template.registerHelper('isActiveTemplate', function(options){
+  var cssClass = options.hash.class ? options.hash.class : 'active'
+  return (Meteor.request.controller + '_' + Meteor.request.action) === options.hash.name ? cssClass : ''
+});
+
+Template.registerHelper('getRoute', function(){
+  return Meteor.request.route;
+});
+
+Template.registerHelper('getReactiveRoute', function(){
+  return Session.get('route');
+});
+
 
 Template.registerHelper('getController', function(){
   return Meteor.request.controller;

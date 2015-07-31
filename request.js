@@ -10,7 +10,10 @@ var Request = Base.extend({
     constructor: function() {
         
     },
-
+    setRoute: function(controller, action){
+        this.route = controller;
+        this.route += action ? '/' + action : '' ;
+    },
     setController: function( controller ) {
         // console.log('*** Request.setController ***');
         // console.log('controller: ' + controller);

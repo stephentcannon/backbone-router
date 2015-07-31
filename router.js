@@ -13,67 +13,68 @@ ClientRouter = Backbone.Router.extend({
     },
     /* Default route */
     setDefaultRoute: function() {
-      console.log('*** setDefaultRoute ***');
+      // console.log('*** setDefaultRoute ***');
       Meteor.navigate('/home');
       
     },
     /* Generic routes */
     setRoute: function(route) {
-      console.log('*** setRoute ***');
-      console.log(route);
+      // console.log('*** setRoute ***');
+      // console.log(route);
       Meteor.request.setController(route);
       Meteor.request.setAction(null);
       Meteor.request.setId(null);
       Meteor.request.setQueryString(null);
-      console.log('***********************');
+      // console.log('***********************');
     },
     setRouteQueryString: function(route, queryString){
-      console.log('*** setRouteQueryString ***')
+      // console.log('*** setRouteQueryString ***')
       Meteor.request.setController(route);
       Meteor.request.setAction(null);
       Meteor.request.setId(null);
       Meteor.request.setQueryString(queryString);
-      console.log('***********************');
+      // console.log('***********************');
     },
     setRouteAction: function(route, action){
-      console.log('*** setRouteAction ***')
+      // console.log('*** setRouteAction ***')
       Meteor.request.setController(route);
       Meteor.request.setAction(action);
       Meteor.request.setId(null);
       Meteor.request.setQueryString(null);
-      console.log('***********************');
+      //console.log('***********************');
     },
     setRouteActionQueryString: function(route, action, queryString){
-      console.log('*** setRouteActionQueryString ***')
+      //console.log('*** setRouteActionQueryString ***')
       Meteor.request.setController(route);
       Meteor.request.setAction(action);
       Meteor.request.setId(null);
       Meteor.request.setQueryString(queryString);
-      console.log('***********************');
+      //console.log('***********************');
     },
     setRouteActionId: function(route, action, id){
-      console.log('*** setRouteActionId ***')
+      //console.log('*** setRouteActionId ***')
       Meteor.request.setController(route);
       Meteor.request.setAction(action);
       Meteor.request.setId(id);
       Meteor.request.setQueryString(null);
-      console.log('***********************');
+      //console.log('***********************');
     },
     setRouteActionIdQueryString: function(route, action, id, queryString){
-      console.log('*** setRouteActionIdQueryString ***')
+      //console.log('*** setRouteActionIdQueryString ***')
       Meteor.request.setController(route);
       Meteor.request.setAction(action);
       Meteor.request.setId(id);
       Meteor.request.setQueryString(queryString);
-      console.log('***********************');
+      //console.log('***********************');
     },
     
 
     /* Every time a route is called we set it in the Session */
     initialize: function() {
-      console.log('*** Router initialize ***');
+      //console.log('*** Router initialize ***');
       this.bind("all", function() {
-          Session.set('routeController', Backbone.history.fragment); //NEVER CHNAGE THIS THIS IS WHAT KICKS ROUTING 
+          Session.set('route', Backbone.history.fragment); //NEVER CHNAGE THIS THIS IS WHAT KICKS ROUTING 
+          Session.set('routeController', Meteor.request.controller);
           Session.set('routeAction', Meteor.request.action);
           Session.set('routeId', Meteor.request.id);
           Session.set('routeQueryString', Meteor.request.queryString);
@@ -97,10 +98,10 @@ Meteor.startup(function() {
   Backbone.history.start({pushState: true});
   //[data-link="internal"]
   $('body').on('click', 'a', function(e){
-    console.log('********* body on click ************')
-    console.log(this);
-    console.log( $(this).attr('href') );
-    console.log('******************************')
+    // console.log('********* body on click ************')
+    // console.log(this);
+    // console.log( $(this).attr('href') );
+    // console.log('******************************')
     e.preventDefault();
     Meteor.navigate($(this).attr('href'));
   });
