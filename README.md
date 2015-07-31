@@ -48,6 +48,25 @@ Put this in your body somewhere and render whatever template is in the /controll
 {{> content}} 
 ````
 
+You should put the content helper function in it's own template so that it doesn't cause re-rendering of other templates.
+
+For example...
+
+````
+<template name="home">
+  {{> navbars}}
+  {{> container}}
+  {{> footer}}
+</template>
+
+<template name="container">
+  <div class="container-fluid clearfix">
+    {{> content}}
+  </div>
+</template>
+
+````
+
 #Meteor.request object
 
 ````
