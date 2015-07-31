@@ -10,18 +10,48 @@ Template.registerHelper('content', function(){
 });
 
 Template.registerHelper('isActiveRoute', function(options){
-  var cssClass = options.hash.class ? options.hash.class : 'active'
-  return Meteor.request.route === options.hash.name ? cssClass : ''
+  if(options){
+    if(options.hash){
+      if(options.hash.hasOwnProperty('name')){
+        var cssClass = 'active';
+        if(options.hash.hasOwnProperty('class')){
+          cssClass = options.hash.class ? options.hash.class : 'active'
+        }
+        return Meteor.request.route === options.hash.name ? cssClass : ''
+      }
+    }
+  }
 });
 
 Template.registerHelper('isActiveAction', function(options){
-  var cssClass = options.hash.class ? options.hash.class : 'active'
-  return Meteor.request.action === options.hash.name ? cssClass : ''
+  if(options){
+    if(options.hash){
+      if(options.hash.hasOwnProperty('name')){
+        var cssClass = 'active';
+        if(options.hash.hasOwnProperty('class')){
+          cssClass = options.hash.class ? options.hash.class : 'active'
+        }
+        return Meteor.request.action === options.hash.name ? cssClass : ''
+      }
+    }
+  }
 });
 
 Template.registerHelper('isActiveTemplate', function(options){
   var cssClass = options.hash.class ? options.hash.class : 'active'
   return (Meteor.request.controller + '_' + Meteor.request.action) === options.hash.name ? cssClass : ''
+
+  if(options){
+    if(options.hash){
+      if(options.hash.hasOwnProperty('name')){
+        var cssClass = 'active';
+        if(options.hash.hasOwnProperty('class')){
+          cssClass = options.hash.class ? options.hash.class : 'active'
+        }
+        return (Meteor.request.controller + '_' + Meteor.request.action) === options.hash.name ? cssClass : ''
+      }
+    }
+  }
 });
 
 Template.registerHelper('getRoute', function(){

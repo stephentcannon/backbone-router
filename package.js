@@ -1,6 +1,6 @@
 Package.describe({
   name: 'steeve:backbone-router',
-  version: '0.0.5',
+  version: '0.0.6',
   // Brief, one-line summary of the package.
   summary: 'a simple implied router based on backbone',
   // URL to the Git repository containing the source code for this package.
