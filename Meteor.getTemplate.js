@@ -8,7 +8,7 @@ Meteor.getTemplate = function() {
   // console.log('Meteor.request.id: ' + Meteor.request.id);
   // console.log('Meteor.request.query: ' + JSON.stringify(Meteor.request.query) );
 
-  Meteor.view += Meteor.request.action ? '.' + Meteor.request.action : '' ;
+  Meteor.view += Meteor.request.action ? '_' + Meteor.request.action : '' ;
   
 
   try {

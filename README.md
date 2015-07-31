@@ -25,7 +25,7 @@ The route expression is limited to the following.
 is the name of the route and will automatically render a template of that name.  Just create templates and the router will automatically render them.  It is available as Meteor.request.controller, a Session var and through a reactive and non-reactive template helper.
 
 ###action
-is the action and will render a template of name.action. Just create templates of <b>name.action</b> and the router will automatically render them.  It is available as Meteor.request.action, a Session var and through a reactive and non-reactive template helper.
+is the action and will render a template of name_action. Just create templates of <b>name_action</b> and the router will automatically render them.  It is available as Meteor.request.action, a Session var and through a reactive and non-reactive template helper.
 
 ###id
 is optional and is available as a parameter on the request controller and as a session variable along witih a reactive and non-reactive template helper.  It is available as Meteor.reqeust.id, a Session var and through a reactive and non-reactive template helper.
