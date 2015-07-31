@@ -14,7 +14,7 @@ Template.registerHelper('getController', function(){
 });
 
 Template.registerHelper('getReactiveController', function(){
-  return Session.get('route');
+  return Session.get('routeController');
 });
 
 Template.registerHelper('getAction', function(){
@@ -46,6 +46,7 @@ Template.registerHelper('getParam', function(name){
 });
 
 Template.registerHelper('getReactiveParam', function(name){
-  return Session.get('routeQueryString')[name];
+  if (Meteor.request.params[name])
+    return Session.get('routeQueryString')[name];
 });
 

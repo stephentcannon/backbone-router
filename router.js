@@ -2,30 +2,33 @@ ClientRouter = Backbone.Router.extend({
 
     routes: {
         "" : "default_route",
-        ":route/": "get_route",
-        ":route?*querystring": "getRouteAndQueryString",
-        ":route": "get_route",
-        ":route/:action?*querystring": "getRouteActionAndQueryString",
-        ":route/:action": "get_route",
-        ":route/:action/:id?*querystring": "get_route",
-        ":route/:action/:id": "get_route",
+        ":route/": "setRoute",
+        ":route?*querystring": "setRouteAndQueryString",
+        ":route": "setRoute",
+        ":route/:action?*querystring": "setRouteActionAndQueryString",
+        ":route/:action": "setRoute",
+        ":route/:action/:id?*querystring": "setRoute",
+        ":route/:action/:id": "setRoute",
     },
 
     /* Default route */
     default_route: function() {
         Meteor.navigate('/');
     },
-    getRouteAndQueryString: function(route, queryString){
+    setRouteAndQueryString: function(route, queryString){
+
       Meteor.request.setController(route);
       Meteor.request.setQueryString(queryString);
     },
-    getRouteActionAndQueryString: function(route, action, queryString){
+    setRouteActionAndQueryString: function(route, action, queryString){
       Meteor.request.setController(route);
       Meteor.request.setAction(action);
       Meteor.request.setQueryString(queryString);
     },
     /* Generic routes */
-    get_route: function( route, action, id, queryString ) {
+    setRoute: function( route, action, id, queryString ) {
+      // console.log('*** setRoute ***');
+      // console.log(route);
         Meteor.request.setController(route);
         Meteor.request.setAction(action);
         Meteor.request.setId(id);
@@ -36,11 +39,14 @@ ClientRouter = Backbone.Router.extend({
     /* Every time a route is called we set it in the Session */
     initialize: function() {
       this.bind("all", function() {
-          Session.set('route', Backbone.history.fragment);
+          Session.set('routeController', Meteor.request.controller);//Backbone.history.fragment);
           Session.set('routeAction', Meteor.request.action);
           Session.set('routeId', Meteor.request.id);
           Session.set('routeQueryString', Meteor.request.queryString);
       });
+    },
+    notFound: function(name){
+      name ? Meteor.request.setNotFound(name) : Meteor.request.setNotFound('EtherPOSRouterDefault404');
     }
 });
 

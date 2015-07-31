@@ -4,6 +4,7 @@
  * @property {string} action     The current request action
  * @property {string} id         The id of the current item in the orl
  * @property {string} query      The current request query
+ * @property {string} notFound
  */
 var Request = Base.extend({
     constructor: function() {
@@ -11,7 +12,12 @@ var Request = Base.extend({
     },
 
     setController: function( controller ) {
+        // console.log('*** Request.setController ***');
+        // console.log('controller: ' + controller);
         this.controller = controller;
+    },
+    setNotFound:function(name){
+      this.notFound = name;
     },
     setAction: function( action ) {
         this.action = action;

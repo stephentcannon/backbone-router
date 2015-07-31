@@ -8,18 +8,22 @@ Meteor.getTemplate = function() {
   // console.log('Meteor.request.id: ' + Meteor.request.id);
   // console.log('Meteor.request.query: ' + JSON.stringify(Meteor.request.query) );
 
-  Meteor.view += Meteor.request.action ? '_' + Meteor.request.action : '' ;
+  Meteor.view += Meteor.request.action ? '.' + Meteor.request.action : '' ;
+  
 
   try {
-    if ( !_.has(Template, Meteor.view) )
-      throw new Meteor.Error(404, "Not found", "The page does not exists.");
-  } catch (e) {
-    console.log(e);
-    Template.error.informations = function () {
-        return e;
-    }
-    return 'error';
-  }
+    if ( !_.has(Template, Meteor.view) ){
 
-  return Meteor.view;
+      Meteor.view = Meteor.request.notFound;
+      if ( !_.has(Template, Meteor.view) ){
+        Meteor.view = 'EtherPOSRouterDefault404';
+      }
+    }
+  } catch (e) {
+
+    Meteor.view = 'EtherPOSRouterDefault404';
+  } finally{
+
+    return Meteor.view;
+  }
 }
