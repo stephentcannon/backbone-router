@@ -3,47 +3,77 @@ ClientRouter = Backbone.Router.extend({
     routes: {
         "" : "setDefaultRoute",
         "/" : "setDefaultRoute",
-        ":route/": "setRoute",
-        ":route?*querystring": "setRouteAndQueryString",
         ":route": "setRoute",
-        ":route/:action?*querystring": "setRouteActionAndQueryString",
-        ":route/:action": "setRoute",
-        ":route/:action/:id?*querystring": "setRoute",
-        ":route/:action/:id": "setRoute",
+        ":route/": "setRoute",
+        ":route?*querystring": "setRouteQueryString",
+        ":route/:action": "setRouteAction",
+        ":route/:action?*querystring": "setRouteActionQueryString",
+        ":route/:action/:id?*querystring": "setRouteActionIdQueryString",
+        ":route/:action/:id": "setRouteActionId",
     },
-
     /* Default route */
     setDefaultRoute: function() {
-
+      console.log('*** setDefaultRoute ***');
       Meteor.navigate('/home');
       
     },
-    setRouteAndQueryString: function(route, queryString){
-
+    /* Generic routes */
+    setRoute: function(route) {
+      console.log('*** setRoute ***');
+      console.log(route);
       Meteor.request.setController(route);
-      Meteor.request.setQueryString(queryString);
+      Meteor.request.setAction(null);
+      Meteor.request.setId(null);
+      Meteor.request.setQueryString(null);
+      console.log('***********************');
     },
-    setRouteActionAndQueryString: function(route, action, queryString){
+    setRouteQueryString: function(route, queryString){
+      console.log('*** setRouteQueryString ***')
+      Meteor.request.setController(route);
+      Meteor.request.setAction(null);
+      Meteor.request.setId(null);
+      Meteor.request.setQueryString(queryString);
+      console.log('***********************');
+    },
+    setRouteAction: function(route, action){
+      console.log('*** setRouteAction ***')
       Meteor.request.setController(route);
       Meteor.request.setAction(action);
+      Meteor.request.setId(null);
+      Meteor.request.setQueryString(null);
+      console.log('***********************');
+    },
+    setRouteActionQueryString: function(route, action, queryString){
+      console.log('*** setRouteActionQueryString ***')
+      Meteor.request.setController(route);
+      Meteor.request.setAction(action);
+      Meteor.request.setId(null);
       Meteor.request.setQueryString(queryString);
+      console.log('***********************');
     },
-    /* Generic routes */
-    setRoute: function( route, action, id, queryString ) {
-      // console.log('*** setRoute ***');
-      // console.log(route);
-        Meteor.request.setController(route);
-        Meteor.request.setAction(action);
-        Meteor.request.setId(id);
-        Meteor.request.setQueryString(queryString);
-
+    setRouteActionId: function(route, action, id){
+      console.log('*** setRouteActionId ***')
+      Meteor.request.setController(route);
+      Meteor.request.setAction(action);
+      Meteor.request.setId(id);
+      Meteor.request.setQueryString(null);
+      console.log('***********************');
     },
+    setRouteActionIdQueryString: function(route, action, id, queryString){
+      console.log('*** setRouteActionIdQueryString ***')
+      Meteor.request.setController(route);
+      Meteor.request.setAction(action);
+      Meteor.request.setId(id);
+      Meteor.request.setQueryString(queryString);
+      console.log('***********************');
+    },
+    
 
     /* Every time a route is called we set it in the Session */
     initialize: function() {
-      // console.log('*** Router initialize ***');
+      console.log('*** Router initialize ***');
       this.bind("all", function() {
-          Session.set('routeController', Meteor.request.controller);//Backbone.history.fragment);
+          Session.set('routeController', Backbone.history.fragment);  
           Session.set('routeAction', Meteor.request.action);
           Session.set('routeId', Meteor.request.id);
           Session.set('routeQueryString', Meteor.request.queryString);
@@ -56,17 +86,22 @@ ClientRouter = Backbone.Router.extend({
 
 BackboneRouter = new ClientRouter;
 
-/* Starts the backbone history, and thus the Router */
-Backbone.history.start({pushState: true});
+
 
 /*
  * After DOM is loaded we bind the click event on internal links to call the Meteor.navigate method
- * (This way we don't reload the session and fully use the backbone routing)
+ * (This way we don't reload the session  fully use the backbone routing)
  */
 Meteor.startup(function() {
-    $('body').on('click', 'a[data-link="internal"]', function(e){
-        e.preventDefault();
-        Meteor.navigate($(this).attr('href'));
-    });
-   
-})
+  /* Starts the backbone history,  thus the Router */
+  Backbone.history.start({pushState: true});
+  //[data-link="internal"]
+  $('body').on('click', 'a', function(e){
+    console.log('********* body on click ************')
+    console.log(this);
+    console.log( $(this).attr('href') );
+    console.log('******************************')
+    e.preventDefault();
+    Meteor.navigate($(this).attr('href'));
+  });
+});

@@ -9,8 +9,8 @@ Meteor.getTemplate = function() {
   console.log('Meteor.request.queryString: ' + JSON.stringify(Meteor.request.queryString) );
 
   Meteor.view += Meteor.request.action ? '_' + Meteor.request.action : '' ;
-  
-
+  console.log('Meteor.view: ' + Meteor.view);
+  console.log('**********************')
   try {
     if ( !_.has(Template, Meteor.view) ){
 
