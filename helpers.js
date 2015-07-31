@@ -5,7 +5,7 @@
 Template.registerHelper('content', function(){
     /* This does nothing but triggers the Meteor.Template.chunk HTML automatic update on route change */
     // console.log("******* Template.registerHelper('content'");
-    // Session.get('route');
+    Session.get('routeController');
     return Template[Meteor.getTemplate()];
 });
 
@@ -42,11 +42,11 @@ Template.registerHelper('getReactiveQueryString', function(){
 });
 
 Template.registerHelper('getParam', function(name){
-  return Meteor.request.params[name];
+  return Meteor.request.queryString[name];
 });
 
 Template.registerHelper('getReactiveParam', function(name){
-  if (Meteor.request.params[name])
+  if (Meteor.request.queryString[name])
     return Session.get('routeQueryString')[name];
 });
 

@@ -8,7 +8,7 @@
  */
 var Request = Base.extend({
     constructor: function() {
-        this.params = {}
+        
     },
 
     setController: function( controller ) {
@@ -34,16 +34,16 @@ var Request = Base.extend({
             );
         }
         
-        for(var propt in query_object){
-          this.pushParam(propt, query_object[propt]);
-        }
+        // for(var propt in query_object){
+        //   this.pushParam(propt, query_object[propt]);
+        // }
         this.queryString = query_object;
 
     },
 
-    pushParam: function(key, value ) {
-        this.params[key] = value;
-    },
+    // pushParam: function(key, value ) {
+    //     this.params[key] = value;
+    // },
 
 });
 

@@ -1,7 +1,8 @@
 ClientRouter = Backbone.Router.extend({
 
     routes: {
-        "" : "default_route",
+        "" : "setDefaultRoute",
+        "/" : "setDefaultRoute",
         ":route/": "setRoute",
         ":route?*querystring": "setRouteAndQueryString",
         ":route": "setRoute",
@@ -12,8 +13,10 @@ ClientRouter = Backbone.Router.extend({
     },
 
     /* Default route */
-    default_route: function() {
-        Meteor.navigate('/');
+    setDefaultRoute: function() {
+
+      Meteor.navigate('/home');
+      
     },
     setRouteAndQueryString: function(route, queryString){
 
@@ -38,6 +41,7 @@ ClientRouter = Backbone.Router.extend({
 
     /* Every time a route is called we set it in the Session */
     initialize: function() {
+      // console.log('*** Router initialize ***');
       this.bind("all", function() {
           Session.set('routeController', Meteor.request.controller);//Backbone.history.fragment);
           Session.set('routeAction', Meteor.request.action);
