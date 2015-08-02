@@ -1,28 +1,28 @@
-#backbone-router
+# backbone-router
 a simple implied router based on backbone
 
-#why
+## why
 because i shouldn't have to define routes
 
 because if i want to intercept routes then i should be able to define global and route based before and after hooks that can call one or more functions to handle the route...but only if necessary
 
-#history
+## history
 this router was created around May 2012 for EtherPOS, a multi-store retail point of sale system built on meteor, back in 
 
 at that time there reallly weren't any routers for Meteor
 
 so it is very minimalistic, but it gets the job done
 
-#usage
+## usage
 
 
-##requirements
+### requirements
 you must have a <b>home</b> template
 
 by default the router routes <b>/</b> to the <b>home</b> template
 
 
-##building routes
+### building routes
 the router will attempt to route all requests to a template by name
 
 if the template cannot be found it will route to the Meteor.request.notFound
@@ -33,21 +33,21 @@ The route expression is limited to the following.
 
 /controller/action(/id)(?queryString)
 
-###controller
+#### controller
 is the name of the route and will automatically render a template of that name.  Just create templates and the router will automatically render them.  It is available as Meteor.request.controller, a Session var and through a reactive and non-reactive template helper.
 
-###action
+#### action
 is the action and will render a template of name_action. Just create templates of <b>name_action</b> and the router will automatically render them.  It is available as Meteor.request.action, a Session var and through a reactive and non-reactive template helper.
 
-###id
+#### id
 is optional and is available as a parameter on the request controller and as a session variable along witih a reactive and non-reactive template helper.  It is available as Meteor.reqeust.id, a Session var and through a reactive and non-reactive template helper.
 
-###queryString
+#### queryString
 is optional and is available as a parameter on the request controller and as a session variable along witih a reactive and non-reactive template helper.  It is available as Meteor.request.queryString, a Session var and through a reactive and non-reactive template helper.
 
 Addtionally, you can get the queryString parameters from Meteor.request.params and through a reactive and non-reactive template helper.
 
-#rendering your routes
+# rendering your routes
 Put this in your body somewhere and render whatever template is in the /controller or /controller/action.  See above if you do not understand.
 
 ````
@@ -73,7 +73,7 @@ For example...
 
 ````
 
-#Meteor.request object
+## Meteor.request object
 
 ````
 {
@@ -88,7 +88,7 @@ For example...
 
 ````
 
-#Template helpers
+## Template helpers
 
 
 <h4>Non reactive</h4>
@@ -147,7 +147,7 @@ For example...
     getReactiveParam: {{getReactiveParam "name1"}}<br/>
   </p>
 
-# Session variables
+## Session variables
 Do not set them.  Use helpers to get them or write your own.
 
 Session.get('route')
@@ -160,13 +160,13 @@ Session.get('routeId');
 
 Session.get('routeQueryString');
 
-# Routing the client
+## Routing the client
 
 ````
 Meteor.navigate('/dashboard')
 ````
 
-#local testing linking
+## local testing linking
 
 * cd to your project
 * mkdir packages

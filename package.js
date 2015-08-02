@@ -1,6 +1,6 @@
 Package.describe({
   name: 'steeve:backbone-router',
-  version: '0.0.6',
+  version: '0.0.7',
   // Brief, one-line summary of the package.
   summary: 'a simple implied router based on backbone',
   // URL to the Git repository containing the source code for this package.
@@ -13,7 +13,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
   
-  api.use(['templating', 'backbone', 'session'], 'client');
+  api.use(['templating', 'backbone@1.0.0', 'session'], 'client');
   
   api.addFiles([
     'BackboneRouterDefault404.html',
